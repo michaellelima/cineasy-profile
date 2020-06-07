@@ -1,0 +1,22 @@
+{
+  "name": "cineasy-web",
+  "version": "1.0.0",
+  "description": "Website do projeto Cineasy, TCC apresentado a banca Itaquaquecetuba Junho ",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/userAugustos/cineasy-web.git"
+  },
+  "author": "Vidaboa inc",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/userAugustos/cineasy-web/issues"
+  },
+  "homepage": "https://github.com/userAugustos/cineasy-web#readme",
+  "devDependencies": {
+    "bootstrap": "^4.4.1"
+  }
+}

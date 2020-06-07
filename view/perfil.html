@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Perfil</title>
+  <link rel="stylesheet" href="../node_modules/bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../css/perfil.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <a class="barra navbar-brand text-justify" href="#">Perfil</a>
+  </nav>
+
+  <div class="cover-container">
+    <div class="cover-picture" style="background-image: url(../img/cover.jpg)"></div>
+    <div class="cover-profile-picture" style="background-image: url(../img/thais.png)"></div>
+    <span class="cover-description">"Só pra lembrar, no final desse filme a gente morre".</span>
+  </div>
+
+  <main class="container-fluid profile-main">
+    <div class="row">
+      <div class="profile-sidebar col-12">
+        <ul class="profile-menu">
+          <li class="profile-menu__item">
+            <a data-item-type="general" class="active" href="#">Geral</a>
+          </li>
+          <li class="profile-menu__item">
+            <a data-item-type="history" href="#">Historico Compras</a>
+          </li>
+          <li class="profile-menu__item">
+            <a data-item-type="informations" href="#">Informações Pessoais</a>
+          </li>
+          </li>
+          <li class="profile-menu__item">
+            <a data-item-type="retrieve-codes" href="#">Resgatar Código</a>
+          </li>
+          <li class="profile-menu__item">
+            <a data-item-type="privacity" href="#">Privacidade e Segurança</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-12">
+        <div class="content-holder">
+          <div id="general" class="active">geral</div>
+          <div id="history">historico de compras</div>
+          <div id="informations">informações pessoais</div>
+          <div id="retrieve-codes">resgatar código</div>
+          <div id="privacity">privacidade e segurança</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const Profile = (function(){
+      let $menu, $sections, $tabItems;
+
+      const toggleActiveClass = ($currentTabItem, $currentSection) => {
+        [].slice.call($sections).forEach(item => {
+          item.classList.remove('active');
+        });
+
+        [].slice.call($tabItems).forEach(item => {
+          item.classList.remove('active');
+        });
+
+        $currentTabItem.classList.add('active');
+        $currentSection.classList.add('active');
+      }
+
+      const bindEvents = () => {
+        const handleClickTabItem = event => {
+          event.preventDefault();
+
+          const $currentTabItem = event.target;
+          const itemType = $currentTabItem.getAttribute('data-item-type');
+          const $currentSection = document.querySelector(`#${itemType}`);
+
+          toggleActiveClass($currentTabItem, $currentSection);
+        }
+
+        $menu.addEventListener('click', event => {
+          if(event.target.getAttribute('data-item-type')) {
+            handleClickTabItem(event);
+          }
+        }, false);
+      }
+
+      const init = () => {
+        $menu = document.querySelector('.profile-menu');
+        $sections = document.querySelectorAll('.content-holder > div');
+        $tabItems = document.querySelectorAll('.profile-menu a');
+
+        bindEvents();
+      };
+
+      return {
+        init
+      }
+    })();
+
+    window.addEventListener('load', Profile.init, false)
+  </script>
+</body>
+</html>
